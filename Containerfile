@@ -14,7 +14,4 @@ RUN nvim --headless --noplugin \
     -c "lua vim.pack.update(nil, {force=true, target='lockfile'})" \
     -c "qa"
 
-COPY --chown=dev:dev --chmod=755 entrypoint.editor.sh /entrypoint.d/20-editor.sh
-
-EXPOSE 1234
 WORKDIR /workspace
