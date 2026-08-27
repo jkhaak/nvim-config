@@ -4,7 +4,7 @@ FROM ${BASE_IMAGE}
 LABEL org.containers.image.source="https://github.com/jkhaak/nvim-config"
 LABEL org.containers.image.description="Personal Neovim development environment"
 
-RUN brew install neovim ripgrep fd
+RUN brew install neovim ripgrep fd fish
 
 COPY --chown=dev:dev init.lua /home/dev/.config/nvim/init.lua
 COPY --chown=dev:dev nvim-pack-lock.json /home/dev/.config/nvim/nvim-pack-lock.json
@@ -15,3 +15,4 @@ RUN nvim --headless --noplugin \
     -c "qa"
 
 WORKDIR /workspace
+CMD ["nvim"]
