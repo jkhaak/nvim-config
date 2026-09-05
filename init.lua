@@ -62,7 +62,7 @@ vim.keymap.set('n', '<C-e>', '<C-e><C-e>')
 vim.keymap.set('n', '<C-y>', '<C-y><C-y>')
 
 -- Add a sane escape sequence for terminal emulation
-vim.keymap.set('t', '<leader><Esc>', '<C-\\><C-n>', { silent = true, noremap = true })
+-- vim.keymap.set('t', '<leader><Esc>', '<C-\\><C-n>', { silent = true, noremap = true })
 
 -- Map <A-j>, <A-k>, <A-h>, <A-l> to navigate between windows in any modes
 vim.keymap.set('t', '<C-h>', '<C-\\><C-n><C-w>h')
