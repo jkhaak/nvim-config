@@ -176,6 +176,12 @@ vim.pack.add({
     version = 'harpoon2'
   },
 
+  -- Languages
+
+  -- go
+  -- better syntax highlighting for gotmpl
+  'https://github.com/ngynkvn/gotmpl.nvim',
+
   -- zig zls
   'https://codeberg.org/ziglang/zig.vim',
 })
@@ -304,7 +310,29 @@ vim.api.nvim_create_autocmd('BufWritePre', {
 })
 
 local home = vim.fn.expand("$HOME")
-vim.lsp.config['zls'] = {
+
+-- LSP configurations
+
+-- Go
+vim.lsp.config('gopls', {
+  settings = {
+    gopls = {
+      staticcheck = true,
+      gofumpt = true,
+    },
+  },
+})
+vim.lsp.enable('gopls')
+
+vim.filetype.add({
+  extension = { gotmpl = 'gotmpl' },
+  pattern = {
+    ["%.go%.tmpl$"] = "gotmpl",
+  },
+})
+
+-- Zig
+vim.lsp.config('zls', {
   -- Set to 'zls' if `zls` is in your PATH
 
   cmd = { home .. '/.local/bin/zls' },
@@ -328,5 +356,5 @@ vim.lsp.config['zls'] = {
       zig_exe_path = home .. '/.local/bin/zig'
     }
   },
-}
+})
 vim.lsp.enable('zls')
