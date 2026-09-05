@@ -218,6 +218,23 @@ local home = vim.fn.expand("$HOME")
 
 -- LSP configurations
 
+vim.api.nvim_create_autocmd("LspAttach", {
+  callback = function(event)
+    local client = vim.lsp.get_client_by_id(event.data.client_id)
+    local map = function(keys, func, desc)
+      vim.keymap.set("n", keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
+    end
+
+    map("gd", telescope_builtin.lsp_definitions, "[G]oto [D]efinition")
+    map("gr", telescope_builtin.lsp_references, "[G]oto [R]eferences")
+    map("gI", telescope_builtin.lsp_implementations, "[G]oto [I]mplementation")
+    map("K", vim.lsp.buf.hover, "Hover Documentation")
+    map("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
+    map("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
+    map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
+  end,
+})
+
 -- Go
 vim.lsp.config('gopls', {
   settings = {
