@@ -214,21 +214,6 @@ vim.keymap.set("n", "<C-s>", function() harpoon:list():select(4) end)
 vim.keymap.set("n", "<C-S-P>", function() harpoon:list():prev() end)
 vim.keymap.set("n", "<C-S-N>", function() harpoon:list():next() end)
 
--- Configure zls
--- don't show parse errors in a separate window
-vim.g.zig_fmt_parse_errors = 0
--- disable format-on-save from `ziglang/zig.vim`
-vim.g.zig_fmt_autosave = 0
--- enable  format-on-save from vim.lsp + ZLS
---
--- Formatting with ZLS matches `zig fmt`.
-vim.api.nvim_create_autocmd('BufWritePre', {
-  pattern = { "*.zig", "*.zon" },
-  callback = function(ev)
-    vim.lsp.buf.format()
-  end
-})
-
 local home = vim.fn.expand("$HOME")
 
 -- LSP configurations
@@ -252,6 +237,22 @@ vim.filetype.add({
 })
 
 -- Zig
+
+-- Configure zls
+-- don't show parse errors in a separate window
+vim.g.zig_fmt_parse_errors = 0
+-- disable format-on-save from `ziglang/zig.vim`
+vim.g.zig_fmt_autosave = 0
+-- enable  format-on-save from vim.lsp + ZLS
+
+-- Formatting with ZLS matches `zig fmt`.
+vim.api.nvim_create_autocmd('BufWritePre', {
+  pattern = { "*.zig", "*.zon" },
+  callback = function(ev)
+    vim.lsp.buf.format()
+  end
+})
+
 vim.lsp.config('zls', {
   -- Set to 'zls' if `zls` is in your PATH
 
