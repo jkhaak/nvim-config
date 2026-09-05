@@ -4,6 +4,15 @@ FROM ${BASE_IMAGE}
 LABEL org.containers.image.source="https://github.com/jkhaak/nvim-config"
 LABEL org.containers.image.description="Personal Neovim development environment"
 
+ENV LANG=fi_FI.UTF-8
+ENV LC_ALL=fi_FI.UTF-8
+ENV LANGUAGE=fi_FI.UTF-8
+
+RUN sudo dnf install -y \
+    glibc-langpack-en \
+    glibc-langpack-fi \
+    && dnf clean all
+
 RUN brew update \
     && brew install -y \
     fd \
