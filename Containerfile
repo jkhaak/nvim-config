@@ -14,16 +14,16 @@ RUN sudo dnf install -y --setopt=install_weak_deps=False --setopt=tsflags=nodocs
     fish \
     glibc-langpack-en \
     glibc-langpack-fi \
-    golang-mvdan-gofumpt \
-    gopls \
     neovim \
     ripgrep \
-    staticcheck \
     && dnf clean all
 
 RUN brew update \
     && brew install -y \
+    gofumpt \
+    gopls \
     jujutsu \
+    staticcheck \
     && brew cleanup --prune=all \
     && rm -rf "$(brew --cache)"
 
