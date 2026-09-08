@@ -9,21 +9,23 @@ ENV LC_ALL=fi_FI.UTF-8
 ENV LANGUAGE=fi_FI.UTF-8
 ENV COLORTERM=truecolor
 
-RUN sudo dnf install -y \
+RUN sudo dnf install -y --setopt=install_weak_deps=False --setopt=tsflags=nodocs \
+    fd-find \
+    fish \
     glibc-langpack-en \
     glibc-langpack-fi \
+    golang-mvdan-gofumpt \
+    gopls \
+    neovim \
+    ripgrep \
+    staticcheck \
     && dnf clean all
 
 RUN brew update \
     && brew install -y \
-    fd \
-    fish \
-    gofumpt \
-    gopls \
     jujutsu \
-    neovim \
-    ripgrep \
-    staticcheck
+    && brew cleanup --prune=all \
+    && rm -rf "$(brew --cache)"
 
 COPY --chown=dev:dev init.lua /home/dev/.config/nvim/init.lua
 COPY --chown=dev:dev nvim-pack-lock.json /home/dev/.config/nvim/nvim-pack-lock.json
