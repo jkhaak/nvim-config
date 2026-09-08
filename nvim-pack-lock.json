@@ -12,6 +12,10 @@
       "rev": "25050e4ed39e628282831d4cbecb1850454ce915",
       "src": "https://github.com/lewis6991/gitsigns.nvim"
     },
+    "gotmpl.nvim": {
+      "rev": "df7937c19dd254e9617db0a1ff35e7abefd8c3b6",
+      "src": "https://github.com/ngynkvn/gotmpl.nvim"
+    },
     "harpoon": {
       "rev": "87b1a3506211538f460786c23f98ec63ad9af4e5",
       "src": "https://github.com/ThePrimeagen/harpoon",
