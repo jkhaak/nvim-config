@@ -14,8 +14,8 @@ RUN sudo dnf install -y --setopt=install_weak_deps=False --setopt=tsflags=nodocs
     fish \
     glibc-langpack-en \
     glibc-langpack-fi \
-    neovim \
     ripgrep \
+    wl-clipboard \
     && dnf clean all
 
 RUN brew update \
@@ -23,7 +23,13 @@ RUN brew update \
     gofumpt \
     gopls \
     jujutsu \
+    just \
+    neovim \
+    node \
     staticcheck \
+    tree-sitter \
+    tree-sitter-cli \
+    tree-sitter-go \
     && brew cleanup --prune=all \
     && rm -rf "$(brew --cache)"
 

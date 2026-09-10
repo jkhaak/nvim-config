@@ -157,6 +157,10 @@ vim.pack.add({
 
   -- Quickstart configs for LSP
   'https://github.com/neovim/nvim-lspconfig',
+
+  -- Also we need treesitter
+  'https://github.com/nvim-treesitter/nvim-treesitter',
+
   -- Fuzzy picker
   -- 'https://github.com/ibhagwan/fzf-lua',
   -- mini.vim stuff
@@ -187,12 +191,44 @@ vim.pack.add({
 })
 -- To remove old packages `:lua vim.pack.update()`
 
--- require('fzf-lua').setup { fzf_colors = true }
+local treesitter = require('nvim-treesitter')
+
 require('mini.completion').setup {}
 require('mini.surround').setup {}
 require('quicker').setup {}
 require('gitsigns').setup {}
 
+-- Setup treesitter
+local ts_parsers = {
+  'golang',
+  'javascript',
+  'typescript',
+  'markdown',
+  'elixir',
+  'zig',
+}
+
+local non_filetypes = {
+  'markdown_inline',
+  'regex',
+  'jsdoc',
+  'luadoc',
+  'query'
+}
+
+local filetypes = vim.tbl_filter(function(p)
+  return not vim.tbl_contains(non_filetypes, p)
+end, ts_parsers)
+
+treesitter.install(ts_parsers)
+
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = filetypes,
+  group = vim.api.nvim_create_augroup('treesitter-enable', { clear = true}),
+  callback = function(args) vim.treesitter.start(args.buf) end,
+})
+
+-- Setup telescope and harpoon
 local telescope_builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>ff', telescope_builtin.find_files, { desc = 'Telescope find files' })
 vim.keymap.set('n', '<leader>fg', telescope_builtin.live_grep, { desc = 'Telescope live grep' })
