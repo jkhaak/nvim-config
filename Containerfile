@@ -33,6 +33,13 @@ RUN brew update \
     && brew cleanup --prune=all \
     && rm -rf "$(brew --cache)"
 
+# fix some possible permission issues
+RUN mkdir -p \
+    /home/dev/.cache \
+    /home/dev/.config \
+    /home/dev/.local \
+    /home/dev/.ssh
+
 COPY --chown=dev:dev init.lua /home/dev/.config/nvim/init.lua
 COPY --chown=dev:dev nvim-pack-lock.json /home/dev/.config/nvim/nvim-pack-lock.json
 
