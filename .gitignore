@@ -6,3 +6,7 @@
 !init.lua
 !justfile
 !nvim-pack-lock.json
+
+!lua/
+!lua/**/
+!lua/**/*.lua

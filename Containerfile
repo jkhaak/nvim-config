@@ -41,6 +41,7 @@ RUN mkdir -p \
     /home/dev/.ssh
 
 COPY --chown=dev:dev init.lua /home/dev/.config/nvim/init.lua
+COPY --chown=dev:dev lua/ /home/dev/.config/nvim/lua/
 COPY --chown=dev:dev nvim-pack-lock.json /home/dev/.config/nvim/nvim-pack-lock.json
 
 # Install plugins from lockfile
