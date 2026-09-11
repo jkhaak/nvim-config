@@ -46,7 +46,7 @@ COPY --chown=dev:dev nvim-pack-lock.json /home/dev/.config/nvim/nvim-pack-lock.j
 # Install plugins from lockfile
 RUN nvim --headless --noplugin \
     -c "lua vim.pack.update(nil, {force=true, target='lockfile'})" \
-    -c "qa"
+    -c "qa!"
 
 WORKDIR /workspace
 CMD ["nvim"]
