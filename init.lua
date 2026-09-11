@@ -18,3 +18,6 @@ for _, mod in ipairs(configs) do
   require('config.' .. mod)
 end
 
+-- for local adjustments
+pcall(require, 'config.local')
+

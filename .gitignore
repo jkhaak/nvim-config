@@ -10,3 +10,4 @@
 !lua/
 !lua/**/
 !lua/**/*.lua
+lua/config/local.lua
