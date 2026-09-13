@@ -1,5 +1,6 @@
 -- LSP configurations
 local home = vim.fn.expand("$HOME")
+local telescope_builtin = require('telescope.builtin')
 
 vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(event)
