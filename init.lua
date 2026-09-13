@@ -20,4 +20,4 @@ end
 
 -- for local adjustments
 pcall(require, 'config.local')
-
+require('config.confd').load()

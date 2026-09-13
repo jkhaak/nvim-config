@@ -6,8 +6,7 @@
 -- 'updatetime' and when going to insert mode.
 vim.cmd('packadd! nohlsearch')
 
--- Install third-party plugins via "vim.pack.add()".
-vim.pack.add({
+local sources = {
   -- fix nested nvim instances. must be first.
   'https://github.com/willothy/flatten.nvim',
 
@@ -44,7 +43,15 @@ vim.pack.add({
 
   -- zig zls
   'https://codeberg.org/ziglang/zig.vim',
-})
+}
+
+local ok_local, local_cfg = pcall(require, 'config.local')
+if ok_local and local_cfg.plugin_sources then
+  vim.list_extend(sources, local_cfg.plugin_sources)
+end
+
+-- Install third-party plugins via "vim.pack.add()".
+vim.pack.add(sources)
 -- To remove old packages `:lua vim.pack.update()`
 
 require('mini.completion').setup {}
