@@ -7,12 +7,9 @@ function M.load()
     return
   end
 
-  local files = vim.fn.glob(conf_dir .. '/*.lua', true)
-  if #files == 0 then
-    return
-  end
-
-  table.sort(files)
+  local files = vim.fs.find(function(name, path)
+    return name:match('%.lua$') ~= nil
+  end, { path = conf_dir, type = 'file' })
 
   for _, f in ipairs(files) do
     local ok, err = pcall(dofile, f)
