@@ -35,6 +35,9 @@ local sources = {
     version = 'harpoon2'
   },
 
+  -- colorscheme
+  { src = "https://github.com/catppuccin/nvim", name = "catppuccin" },
+
   -- Languages
 
   -- go
@@ -53,6 +56,11 @@ end
 -- Install third-party plugins via "vim.pack.add()".
 vim.pack.add(sources)
 -- To remove old packages `:lua vim.pack.update()`
+
+vim.cmd.colorscheme "catppuccin-nvim"
+require('catppuccin').setup {
+  flavour = "macchiato"
+}
 
 require('mini.completion').setup {}
 require('mini.surround').setup {}
