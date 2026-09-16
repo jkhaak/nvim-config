@@ -6,6 +6,9 @@
 -- To see documentation for an option, you can use `:h 'optionname'`, for example `:h 'number'`
 -- (Note the single quotes)
 
+-- Colorscheme
+vim.cmd.colorscheme "catppuccin-mocha"
+
 -- Configure backup
 local backup_dir = vim.fn.expand("$HOME") .. "/.local/nvim/backup"
 vim.fn.mkdir(backup_dir, "p")

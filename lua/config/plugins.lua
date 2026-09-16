@@ -57,11 +57,6 @@ end
 vim.pack.add(sources)
 -- To remove old packages `:lua vim.pack.update()`
 
-vim.cmd.colorscheme "catppuccin-nvim"
-require('catppuccin').setup {
-  flavour = "macchiato"
-}
-
 require('mini.completion').setup {}
 require('mini.surround').setup {}
 require('quicker').setup {}

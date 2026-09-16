@@ -4,11 +4,11 @@
 vim.g.mapleader = ' '
 
 local configs = {
+  'plugins',
   'options',
   'keymaps',
   'autocmds',
   'usercmds',
-  'plugins',
   'treesitter',
   'telescope-harpoon',
   'lsp',
