@@ -21,6 +21,21 @@ vim.o.number = true -- Show line numbers in a column.
 -- Affects the 'number' option above, see `:h number_relativenumber`.
 vim.o.relativenumber = true
 
+if vim.fn.executable('wl-copy') == 1 then
+  vim.g.clipboard = {
+    name = 'wl-clipboard (wayland)',
+    copy = {
+      ['+'] = { 'wl-copy', '--foreground', '--type', 'text/plain' },
+      ['*'] = { 'wl-copy', '--foreground', '--type', 'text/plain' },
+    },
+    paste = {
+      ['+'] = { 'wl-paste', '--no-newline' },
+      ['*'] = { 'wl-paste', '--no-newline' },
+    },
+    cache_enabled = false,
+  }
+end
+
 -- Sync clipboard between OS and Neovim. Schedule the setting after `UIEnter` because it can
 -- increase startup-time. Remove this option if you want your OS clipboard to remain independent.
 -- See `:h 'clipboard'`
