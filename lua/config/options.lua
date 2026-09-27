@@ -25,8 +25,8 @@ if vim.fn.executable('wl-copy') == 1 then
   vim.g.clipboard = {
     name = 'wl-clipboard (wayland)',
     copy = {
-      ['+'] = { 'wl-copy', '--foreground', '--type', 'text/plain' },
-      ['*'] = { 'wl-copy', '--foreground', '--type', 'text/plain' },
+      ['+'] = { 'wl-copy', '--type', 'text/plain' },
+      ['*'] = { 'wl-copy', '--type', 'text/plain' },
     },
     paste = {
       ['+'] = { 'wl-paste', '--no-newline' },

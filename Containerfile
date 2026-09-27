@@ -16,6 +16,7 @@ RUN sudo dnf install -y --setopt=install_weak_deps=False --setopt=tsflags=nodocs
     glibc-langpack-fi \
     ripgrep \
     wl-clipboard \
+    waypipe \
     && dnf clean all
 
 RUN brew update \
